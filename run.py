@@ -1,4 +1,13 @@
+import asyncio
+
 from main import start_bot
 
-if __name__ == '__main__':
+
+
+
+def main():
     start_bot()
+
+
+if __name__ == '__main__':
+    main()
