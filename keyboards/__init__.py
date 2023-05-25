@@ -1,2 +1,2 @@
-from .inline import button_FAQ, button_Order, button_ReportToAdmin, button_Azerbaijani, \
-    button_Russian, button_English, kb_MainMenu, kb_ChooseLang, button_GoBack, kb_GoBack
+from .inline import button_Azerbaijani, \
+    button_Russian, button_English, kb_Menu, kb_ChooseLang, button_GoBack, kb_GoBack

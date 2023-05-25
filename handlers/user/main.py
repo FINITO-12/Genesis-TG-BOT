@@ -1,13 +1,13 @@
 from aiogram import Dispatcher
 from aiogram.types import *
-from keyboards.inline import kb_ChooseLang, kb_MainMenu, kb_GoBack
+from keyboards.inline import kb_ChooseLang, kb_GoBack, kb_Menu
 from handlers.text import faqs, indexLanguage, choose_ur_operation, choose_ur_lang
 
 
 async def start(message: Message):
     await message.answer(text="Dilinizi seçin | Выберите язык | Choose language:", reply_markup=kb_ChooseLang)
 async def stage_two_start(message: Message):
-    await message.answer(text=str(choose_ur_operation[indexLanguage]), reply_markup=kb_MainMenu)
+    await message.answer(text=str(choose_ur_operation[indexLanguage]), reply_markup=kb_Menu(indexLanguage))
 
 async def faq(message: Message):
     await message.answer(text=str(faqs[indexLanguage]), reply_markup=kb_GoBack)
