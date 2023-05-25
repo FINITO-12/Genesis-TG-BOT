@@ -8,10 +8,8 @@ from keyboards.inline import kb_ChooseLang, kb_Menu, kb_Back
 base = DB("localhost", "root", "", "Genesis_bot")
 
 
-
-
-
 async def start(message: Message):
+    base.insert_users(True,message)
     await message.answer(text="Dilinizi seçin | Выберите язык | Choose language:", reply_markup=kb_ChooseLang)
 
 
