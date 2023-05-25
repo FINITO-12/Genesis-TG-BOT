@@ -28,7 +28,9 @@ async def send_mes(message: Message, state: FSMContext):
         for x in range(len(admin_id)):
             shit = base.result_fetch(False, f"SELECT user_id FROM users WHERE user_id='%s'" % admin_id[x])
             await bot.send_message(admin_id[x], text)
+            await message.answer(text=str(choose_ur_operation[indexLanguage]), reply_markup=kb_Menu(indexLanguage))
             attempts = attempts + 1
+
 
     #shit = base.result_fetch(False, f"SELECT user_id FROM users WHERE user_id='%s'" % admin_id)
     # print(shit)
