@@ -1,5 +1,5 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from handlers.text import faqs, order, adm_message, faqs_button_text
+from handlers.text import faqs, order, adm_message, faqs_button_text, go_Back
 
 
 def kb_Menu(indexLang):
@@ -9,6 +9,12 @@ def kb_Menu(indexLang):
     button_C = InlineKeyboardButton(text=adm_message[indexLang], callback_data="sendmessage")
     kb_MM.add(button_A).add(button_B).add(button_C)
     return kb_MM
+
+def kb_Back(indexLang):
+    kb_GoBack = InlineKeyboardMarkup()
+    button_GoBack = InlineKeyboardButton(text=go_Back[indexLang], callback_data="back")
+    kb_GoBack.add(button_GoBack)
+    return kb_GoBack
 
 
 # TODO: BUTTONS START
@@ -26,13 +32,13 @@ button_Azerbaijani = InlineKeyboardButton(text="Azərbaycan dili", callback_data
 
 #
 
-button_GoBack = InlineKeyboardButton(text="Go Back", callback_data="back")
+#button_GoBack = InlineKeyboardButton(text="Go Back", callback_data="back")
 
 # TODO: BUTTONS END
 
 # TODO: KEYBOARDS START
 
-kb_GoBack = InlineKeyboardMarkup().add(button_GoBack)
+#kb_GoBack = InlineKeyboardMarkup().add(button_GoBack)
 
 kb_ChooseLang = InlineKeyboardMarkup().add(button_Azerbaijani).add(button_Russian).add(button_English)
 
