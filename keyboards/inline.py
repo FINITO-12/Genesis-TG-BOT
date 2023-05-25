@@ -12,7 +12,7 @@ button_ReportToAdmin = InlineKeyboardButton(text="Send message to admin", callba
 button_Russian = InlineKeyboardButton(text="Русский", callback_data="RU")
 button_English = InlineKeyboardButton(text="English", callback_data="ENG")
 button_Azerbaijani = InlineKeyboardButton(text="Azərbaycan dili", callback_data="AZE")
-#button_Bruh = InlineKeyboardButton(text="")
+
 
 # TODO: BUTTONS END
 
