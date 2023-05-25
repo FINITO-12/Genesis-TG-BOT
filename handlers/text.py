@@ -1,5 +1,10 @@
 indexLanguage = -1
 
+sendMessage = ["Type the message that you want to send to admins: ", "Введите сообщение для админов: ",
+               "Adminlərə üçün mesajı yığın: "]
+
+message_sent = ["Message was sent by ", "Сообщение было отправлено ", "Mesajı göndərdi "]
+
 faqs_button_text = ["FAQ", "ЧАВО", "FAQ"]
 
 faqs = ["Frequently asked questions will be here!", "Частозадаваемые вопросы будут здесь.",

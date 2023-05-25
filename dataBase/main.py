@@ -26,13 +26,14 @@ class DB:
                 password=self.password,
                 database=self.database
             )
+            cursor = dataBase.cursor(buffered=True)
         except conn.InternalError:
             print("Internal error occur")
         finally:
             if needtodisconnect:
                 if dataBase.is_connected():
                     dataBase.close()
-                    dataBase.cursor().close()
+                    cursor.close()
             if not needtodisconnect:
                 try:
                     command = sql
