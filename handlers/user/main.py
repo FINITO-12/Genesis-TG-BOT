@@ -3,7 +3,7 @@ from aiogram.dispatcher import FSMContext
 from aiogram.types import *
 
 from dataBase.main import DB
-from handlers.text import faqs, choose_ur_operation, go_Back, sendMessage, message_sent, indexLanguage
+from handlers.text import faqs, choose_ur_operation, go_Back, sendMessage, message_sent, indexLanguage, order_action, order_action_succeed
 from keyboards.inline import kb_ChooseLang, kb_Menu, kb_Back
 from misc import TgKeys
 
@@ -31,16 +31,6 @@ async def send_mes(message: Message, state: FSMContext):
             attempts = attempts + 1
         await message.answer(text=str(choose_ur_operation[indexLanguage]), reply_markup=kb_Menu(indexLanguage))
 
-
-    #shit = base.result_fetch(False, f"SELECT user_id FROM users WHERE user_id='%s'" % admin_id)
-    # print(shit)
-    # print(shit[0][0])
-
-
-
-    # await bot.send_message(shit[0][0])
-
-
 async def start(message: Message):
     base.insert_users(True, message)
     await message.answer(text="Dilinizi seçin | Выберите язык | Choose language:", reply_markup=kb_ChooseLang)
@@ -55,6 +45,21 @@ async def send(message: Message):
 async def faq(message: Message):
     await message.answer(text=str(faqs[indexLanguage]), reply_markup=kb_Back(indexLanguage))
 
+async def order_state(message: Message):
+    global indexLanguage, attempts
+    sent_user_id = message.chat.id
+
+    admin_id = [761223254, 1101192009]
+
+    text = str(message.chat.first_name) + " " + str(order_action[indexLanguage])
+
+
+    while attempts < 1:
+        for x in range(len(admin_id)):
+            await bot.send_message(admin_id[x], text)
+            attempts = attempts + 1
+        await message.answer(order_action_succeed[indexLanguage])
+        await message.answer(text=str(choose_ur_operation[indexLanguage]), reply_markup=kb_Menu(indexLanguage))
 
 async def query(call: CallbackQuery):
     global indexLanguage, attempts
@@ -86,6 +91,10 @@ async def query(call: CallbackQuery):
         await call.message.delete()
         await send(call.message)
         # await
+    if call.data == "order":
+        attempts = 0
+        await call.message.delete()
+        await order_state(call.message)
 
 
 def register_user_handlers(dp: Dispatcher):
@@ -93,3 +102,4 @@ def register_user_handlers(dp: Dispatcher):
     dp.register_message_handler(start, commands=["start"])
     dp.register_callback_query_handler(query)
     dp.register_message_handler(send_mes, content_types=['text'])
+    #dp.register_message_handler(query, callback="order")
